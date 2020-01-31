@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using RakhraWeatherApp.Services.Interfaces;
@@ -18,13 +19,28 @@ namespace RakhraWeatherApp.Views
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = ViewModel;
+            ViewModel = new FavouriteWeatherViewModel();
+
+            this.WhenActivated(disposable =>
+            {
+                this.OneWayBind(ViewModel, model => model.Items, page => page.listView.ItemsSource);
+            });
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            ViewModel = new FavouriteWeatherViewModel();
+            ViewModel.Init();
+        }
+
+        private void Button_OnClicked(object sender, EventArgs e)
+        {
+            ViewModel.Clear();
+        }
+
+        private async void Button2_OnClicked(object sender, EventArgs e)
+        {
+            await ViewModel.PopulateData();
         }
     }
 }

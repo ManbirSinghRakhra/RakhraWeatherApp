@@ -6,5 +6,8 @@ namespace RakhraWeatherApp.Models.Apis
     {
         [AliasAs("TemperatureC")]
         public string TemperatureC { get; set; }
+        
+        [AliasAs("FeelsLikeC")]
+        public string FeelsLikeC { get; set; }
     }
 }

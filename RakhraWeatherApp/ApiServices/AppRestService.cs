@@ -15,5 +15,12 @@ namespace RakhraWeatherApp.Services
             var currentDetails = await weatherApi.GetCurrentDetails("CA", "Calgary", Constants.ApiKey);
             return currentDetails;
         }
+
+        public async Task<WeatherDetails> GetCurrentWeather(string countryCode, string cityName)
+        {
+            var weatherApi = RestService.For<IWeatherApi>(Constants.BaseUrl);
+            var currentDetails = await weatherApi.GetCurrentDetails(countryCode, cityName, Constants.ApiKey);
+            return currentDetails;
+        }
     }
 }

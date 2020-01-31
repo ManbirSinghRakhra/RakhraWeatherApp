@@ -1,20 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xamForms:ReactiveContentPage x:TypeArguments="viewModels:FavouriteWeatherViewModel" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+<xamForms:ReactiveContentPage x:TypeArguments="viewModels:FavouriteWeatherViewModel"
+                              xmlns="http://xamarin.com/schemas/2014/forms"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                               xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                               xmlns:viewModels="clr-namespace:RakhraWeatherApp.ViewModels;assembly=RakhraWeatherApp"
                               mc:Ignorable="d" x:Class="RakhraWeatherApp.Views.MainPage">
-    
-        <!-- Place new controls here -->
-        <ListView x:Name="listView" ItemsSource="{Binding Items}" HasUnevenRows="True">
+    <xamForms:ReactiveContentPage.ToolbarItems>
+        <ToolbarItem Clicked="Button_OnClicked" Text="Clear"/>
+        <ToolbarItem Clicked="Button2_OnClicked" Text="Populate"/>
+
+    </xamForms:ReactiveContentPage.ToolbarItems>
+    <StackLayout>
+        <ListView x:Name="listView" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding City}"/>
-                            <Label Text="{Binding TemperatureC}"/>
-                        </StackLayout>
+                        <Grid Margin="5,5,5,5" BackgroundColor="DarkBlue">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label Grid.ColumnSpan="2" VerticalTextAlignment="Center" Text="{Binding City}" TextColor="WhiteSmoke" />
+                            <Label Grid.Row="1" Grid.Column="0" Text="Temperature" TextColor="WhiteSmoke"/>
+                            <Label Grid.Row="2" Grid.Column="0"  Text="{Binding TemperatureC}" TextColor="WhiteSmoke"/>
+                            <Label Grid.Row="1" Grid.Column="1" Text="Feels Like" TextColor="WhiteSmoke"/>
+                            <Label Grid.Row="2" Grid.Column="1"  Text="{Binding FeelsLikeC}" TextColor="WhiteSmoke"/>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+    </StackLayout>
+
+
 </xamForms:ReactiveContentPage>
