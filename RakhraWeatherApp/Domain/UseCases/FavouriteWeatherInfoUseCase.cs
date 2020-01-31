@@ -12,7 +12,8 @@ namespace RakhraWeatherApp.Domain.UseCases
         
         public FavouriteWeatherInfoUseCase()
         {
-            _favouriteWeatherInfoModel.AddOrUpdate(new FavouriteWeatherInfoModel{ City = "Calgary", TemperatureC = 4});
+            for(int i = 0; i <= 1; i++)
+                _favouriteWeatherInfoModel.AddOrUpdate(new FavouriteWeatherInfoModel{ City = "Calgary"+i, TemperatureC = i});
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using RakhraWeatherApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
