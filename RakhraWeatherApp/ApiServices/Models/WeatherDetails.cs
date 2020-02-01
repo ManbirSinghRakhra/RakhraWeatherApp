@@ -1,6 +1,6 @@
 using Refit;
 
-namespace RakhraWeatherApp.Models.Apis
+namespace RakhraWeatherApp.ApiServices.Models
 {
     public class WeatherDetails
     {

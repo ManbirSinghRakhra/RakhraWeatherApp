@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using RakhraWeatherApp.Models.Apis;
+using RakhraWeatherApp.ApiServices.Models;
 using Refit;
 
 namespace RakhraWeatherApp.Services.Interfaces

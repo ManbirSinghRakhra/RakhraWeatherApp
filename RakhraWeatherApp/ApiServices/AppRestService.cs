@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using RakhraWeatherApp.Models.Apis;
+using RakhraWeatherApp.ApiServices.Models;
 using RakhraWeatherApp.Services.Interfaces;
 using Refit;
 

@@ -27,10 +27,10 @@ namespace RakhraWeatherApp.Views
             });
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            ViewModel.Init();
+            await ViewModel.Init().ConfigureAwait(false);
         }
 
         private void Button_OnClicked(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace RakhraWeatherApp.Views
 
         private async void Button2_OnClicked(object sender, EventArgs e)
         {
-            await ViewModel.PopulateData();
+            await ViewModel.PopulateData().ConfigureAwait(false);
         }
     }
 }

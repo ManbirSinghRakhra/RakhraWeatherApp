@@ -14,7 +14,7 @@
 
     </xamForms:ReactiveContentPage.ToolbarItems>
     <StackLayout>
-        <ListView x:Name="listView" HasUnevenRows="True">
+        <ListView x:Name="listView" HasUnevenRows="True" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
