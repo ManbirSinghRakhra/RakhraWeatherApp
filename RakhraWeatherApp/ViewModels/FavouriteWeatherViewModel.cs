@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using DynamicData;
@@ -16,12 +17,18 @@ namespace RakhraWeatherApp.ViewModels
         private readonly IFavouriteWeatherInfoUseCase _favouriteWeatherInfoUseCase;
         private ReadOnlyObservableCollection<FavouriteWeatherInfoModel> _items;
         public ReadOnlyObservableCollection<FavouriteWeatherInfoModel> Items => _items;
+        public ReactiveCommand<Unit, Task> PopulateDataCommand { get; }
+        public ReactiveCommand<Unit, Unit> ClearDataCommand { get; }
+
 
 
         public FavouriteWeatherViewModel(IFavouriteWeatherInfoUseCase favouriteWeatherInfoUseCase = null)
         {
             _favouriteWeatherInfoUseCase = favouriteWeatherInfoUseCase ?? Locator.Current.GetService<IFavouriteWeatherInfoUseCase>();
+            PopulateDataCommand = ReactiveCommand.Create(async () => await PopulateData().ConfigureAwait(false));
+            ClearDataCommand = ReactiveCommand.Create(() => Clear());
         }
+
 
         public async Task Init()
         {

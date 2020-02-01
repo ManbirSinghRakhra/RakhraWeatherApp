@@ -9,9 +9,8 @@
                               xmlns:viewModels="clr-namespace:RakhraWeatherApp.ViewModels;assembly=RakhraWeatherApp"
                               mc:Ignorable="d" x:Class="RakhraWeatherApp.Views.MainPage">
     <xamForms:ReactiveContentPage.ToolbarItems>
-        <ToolbarItem Clicked="Button_OnClicked" Text="Clear"/>
-        <ToolbarItem Clicked="Button2_OnClicked" Text="Populate"/>
-
+        <ToolbarItem x:Name="Clear" Text="Clear"/>
+        <ToolbarItem x:Name="Refresh" Text="Refresh"/>
     </xamForms:ReactiveContentPage.ToolbarItems>
     <StackLayout>
         <ListView x:Name="listView" HasUnevenRows="True" SeparatorVisibility="None">

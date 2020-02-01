@@ -23,7 +23,12 @@ namespace RakhraWeatherApp.Views
 
             this.WhenActivated(disposable =>
             {
-                this.OneWayBind(ViewModel, model => model.Items, page => page.listView.ItemsSource);
+                this.OneWayBind(ViewModel, model => model.Items, page => page.listView.ItemsSource)
+                    .DisposeWith(disposable);
+                this.BindCommand(ViewModel, model => model.PopulateDataCommand, page => page.Refresh)
+                    .DisposeWith(disposable);
+                this.BindCommand(ViewModel, model => model.ClearDataCommand, page => page.Clear)
+                    .DisposeWith(disposable);
             });
         }
 
@@ -31,16 +36,6 @@ namespace RakhraWeatherApp.Views
         {
             base.OnAppearing();
             await ViewModel.Init().ConfigureAwait(false);
-        }
-
-        private void Button_OnClicked(object sender, EventArgs e)
-        {
-            ViewModel.Clear();
-        }
-
-        private async void Button2_OnClicked(object sender, EventArgs e)
-        {
-            await ViewModel.PopulateData().ConfigureAwait(false);
         }
     }
 }
