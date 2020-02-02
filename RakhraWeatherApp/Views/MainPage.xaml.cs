@@ -21,7 +21,7 @@ namespace RakhraWeatherApp.Views
         public MainPage()
         {
             InitializeComponent();
-
+            
             this.WhenActivated(disposable =>
             {
                 this.OneWayBind(ViewModel, model => model.Items, page => page.listView.ItemsSource)
