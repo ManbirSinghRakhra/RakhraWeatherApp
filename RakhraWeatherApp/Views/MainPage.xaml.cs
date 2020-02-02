@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Reactive;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using RakhraWeatherApp.Services.Interfaces;
 using RakhraWeatherApp.ViewModels;
@@ -27,13 +29,13 @@ namespace RakhraWeatherApp.Views
                     .DisposeWith(disposable);
                 this.Bind(ViewModel, model => model.IsRefreshing, page => page.listView.IsRefreshing)
                     .DisposeWith(disposable);
-                this.BindCommand(ViewModel, model => model.PopulateDataCommand, page => page.Refresh)
+
+                this.Refresh.Events().Clicked.Select(args => Unit.Default).InvokeCommand(ViewModel.PopulateDataCommand)
                     .DisposeWith(disposable);
-                this.BindCommand(ViewModel, model => model.PopulateDataCommand, page => page.listView,
-                    nameof(listView.Refreshing))
+                this.Clear.Events().Clicked.Select(args => Unit.Default).InvokeCommand(ViewModel.ClearDataCommand)
                     .DisposeWith(disposable);
-                this.BindCommand(ViewModel, model => model.ClearDataCommand, page => page.Clear)
-                    .DisposeWith(disposable);
+                this.listView.Events().Refreshing.Select(args => Unit.Default)
+                    .InvokeCommand(ViewModel.PopulateDataCommand).DisposeWith(disposable);
             });
         }
 
