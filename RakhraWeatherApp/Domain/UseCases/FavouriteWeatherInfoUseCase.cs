@@ -26,13 +26,14 @@ namespace RakhraWeatherApp.Domain.UseCases
         {
             var calgaryWeather = await _appRestService.GetCurrentWeather("CA", "Calgary");
             _favouriteWeatherInfoModel.AddOrUpdate(new FavouriteWeatherInfoModel{ City = "Calgary", TemperatureC = calgaryWeather.TemperatureC, FeelsLikeC = calgaryWeather.FeelsLikeC});
-            
+ 
+            var edsonWeather = await _appRestService.GetCurrentWeather("CA", "Edson");
+            _favouriteWeatherInfoModel.AddOrUpdate(new FavouriteWeatherInfoModel{ City = "Edson", TemperatureC = edsonWeather.TemperatureC, FeelsLikeC = edsonWeather.FeelsLikeC});
+
             var torontoWeather = await _appRestService.GetCurrentWeather("CA", "Toronto");
             _favouriteWeatherInfoModel.AddOrUpdate(new FavouriteWeatherInfoModel{ City = "Toronto", TemperatureC = torontoWeather.TemperatureC, FeelsLikeC = torontoWeather.FeelsLikeC});
             
-            var edsonWeather = await _appRestService.GetCurrentWeather("CA", "Edson");
-            _favouriteWeatherInfoModel.AddOrUpdate(new FavouriteWeatherInfoModel{ City = "Edson", TemperatureC = edsonWeather.TemperatureC, FeelsLikeC = edsonWeather.FeelsLikeC});
-        }
+         }
 
 
         public void Clear() => _favouriteWeatherInfoModel.Clear();

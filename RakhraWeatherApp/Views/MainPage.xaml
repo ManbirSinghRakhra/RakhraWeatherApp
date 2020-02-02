@@ -13,7 +13,7 @@
         <ToolbarItem x:Name="Refresh" Text="Refresh"/>
     </xamForms:ReactiveContentPage.ToolbarItems>
     <StackLayout>
-        <ListView x:Name="listView" HasUnevenRows="True" SeparatorVisibility="None">
+        <ListView x:Name="listView" HasUnevenRows="True" SeparatorVisibility="None" IsPullToRefreshEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

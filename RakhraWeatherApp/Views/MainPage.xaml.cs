@@ -25,7 +25,12 @@ namespace RakhraWeatherApp.Views
             {
                 this.OneWayBind(ViewModel, model => model.Items, page => page.listView.ItemsSource)
                     .DisposeWith(disposable);
+                this.Bind(ViewModel, model => model.IsRefreshing, page => page.listView.IsRefreshing)
+                    .DisposeWith(disposable);
                 this.BindCommand(ViewModel, model => model.PopulateDataCommand, page => page.Refresh)
+                    .DisposeWith(disposable);
+                this.BindCommand(ViewModel, model => model.PopulateDataCommand, page => page.listView,
+                    nameof(listView.Refreshing))
                     .DisposeWith(disposable);
                 this.BindCommand(ViewModel, model => model.ClearDataCommand, page => page.Clear)
                     .DisposeWith(disposable);
