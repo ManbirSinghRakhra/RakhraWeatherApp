@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using DynamicData;
@@ -14,7 +15,7 @@ using Splat;
 
 namespace RakhraWeatherApp.ViewModels
 {
-    public class FavouriteWeatherViewModel: ReactiveObject
+    public class FavouriteWeatherViewModel: ViewModelBase
     {
         private readonly IFavouriteWeatherInfoUseCase _favouriteWeatherInfoUseCase;
         private ReadOnlyObservableCollection<FavouriteWeatherInfoModel> _items;
@@ -30,8 +31,9 @@ namespace RakhraWeatherApp.ViewModels
         }
 
 
-        public FavouriteWeatherViewModel(IFavouriteWeatherInfoUseCase favouriteWeatherInfoUseCase = null)
+        public FavouriteWeatherViewModel(IScreen hostScreen = null, IFavouriteWeatherInfoUseCase favouriteWeatherInfoUseCase = null): base(hostScreen)
         {
+            UrlPathSegment = "Favourites";
             _favouriteWeatherInfoUseCase = favouriteWeatherInfoUseCase ?? Locator.Current.GetService<IFavouriteWeatherInfoUseCase>();
             PopulateDataCommand = ReactiveCommand.Create(async () => await PopulateData().ConfigureAwait(false));
             ClearDataCommand = ReactiveCommand.Create(() => Clear());
@@ -46,7 +48,8 @@ namespace RakhraWeatherApp.ViewModels
                 .Sort(orderByCity)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _items)
-                .Subscribe();
+                .Subscribe()
+                .DisposeWith(SubscriptionDisposables);
 
             await PopulateData().ConfigureAwait(false);
         }

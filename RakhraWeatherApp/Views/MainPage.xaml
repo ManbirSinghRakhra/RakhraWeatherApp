@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<xamForms:ReactiveContentPage x:TypeArguments="viewModels:FavouriteWeatherViewModel"
+<views:ContentPageBase x:TypeArguments="viewModels:FavouriteWeatherViewModel"
                               xmlns="http://xamarin.com/schemas/2014/forms"
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                               xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                               xmlns:viewModels="clr-namespace:RakhraWeatherApp.ViewModels;assembly=RakhraWeatherApp"
+                              xmlns:views="clr-namespace:RakhraWeatherApp.Views;assembly=RakhraWeatherApp"
                               mc:Ignorable="d" x:Class="RakhraWeatherApp.Views.MainPage">
-    <xamForms:ReactiveContentPage.ToolbarItems>
+    <views:ContentPageBase.ToolbarItems>
         <ToolbarItem x:Name="Clear" Text="Clear"/>
         <ToolbarItem x:Name="Refresh" Text="Refresh"/>
-    </xamForms:ReactiveContentPage.ToolbarItems>
+    </views:ContentPageBase.ToolbarItems>
     <StackLayout>
         <ListView x:Name="listView" HasUnevenRows="True" SeparatorVisibility="None" IsPullToRefreshEnabled="True">
             <ListView.ItemTemplate>
@@ -40,6 +41,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-
-
-</xamForms:ReactiveContentPage>
+</views:ContentPageBase>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using ReactiveUI;
 using UIKit;
 
 namespace RakhraWeatherApp.iOS
@@ -20,6 +21,15 @@ namespace RakhraWeatherApp.iOS
         //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
+
+
+        private AutoSuspendHelper suspendHelper;
+
+        public AppDelegate()
+        {
+            RxApp.SuspensionHost.CreateNewAppState = () => new AppBootstrapper();
+        }
+        
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
