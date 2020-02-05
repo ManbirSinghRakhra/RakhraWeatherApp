@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RakhraWeatherApp.Controls"
+             x:Class="RakhraWeatherApp.Views.ToggledButtonDemoPage"
+             Title="Toggle Button Demo">
+
+    <ContentPage.Resources>
+        <Style TargetType="local:ToggleButton">
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10, 0">
+
+        <local:MultiSelectToggleButtonGroup x:Name="multiSelectToggleButtonGroup"
+                                            Wrap="Wrap"
+                                            JustifyContent="SpaceAround">
+            <local:MultiSelectToggleButtonGroup.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <local:ToggleButton IsToggled="{Binding IsToggled}" IsActive="{Binding CanSelect}" CornerRadius="30" Padding="20,20,20,20" Text="{Binding Text}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="ToggleStates">
+                                    <VisualState Name="ToggledOff">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#C0C0C0" />
+                                            <Setter Property="TextColor" Value="Black" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="ToggledOn">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#404040" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="InActive">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </local:ToggleButton>
+                    </ViewCell>
+                </DataTemplate>
+            </local:MultiSelectToggleButtonGroup.ItemTemplate>
+        </local:MultiSelectToggleButtonGroup>
+
+
+        <local:ToggleButton IsToggled="False" Toggled="OnBoldButtonToggled">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="ToggleStates">
+                    <VisualState Name="ToggledOff">
+                        <VisualState.Setters>
+                            <Setter Property="Text" Value="Bold Off" />
+                            <Setter Property="BackgroundColor" Value="#C0C0C0" />
+                            <Setter Property="TextColor" Value="Black" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="ToggledOn">
+                        <VisualState.Setters>
+                            <Setter Property="Text" Value=" Bold On " />
+                            <Setter Property="BackgroundColor" Value="#404040" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </local:ToggleButton>
+
+        <Label x:Name="label"
+               Text="Just a little passage of some sample text that can be formatted in italic or boldface by toggling the two buttons."
+               FontSize="Large"
+               HorizontalTextAlignment="Center"
+               VerticalOptions="CenterAndExpand" />
+
+    </StackLayout>
+</ContentPage>

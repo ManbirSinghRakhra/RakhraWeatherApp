@@ -10,8 +10,9 @@ namespace RakhraWeatherApp
         public App()
         {
             InitializeComponent();
-            var bootstrapper = new AppBootstrapper();
-            MainPage = bootstrapper.CreateMainPage();
+            //var bootstrapper = new AppBootstrapper();
+            //MainPage = bootstrapper.CreateMainPage();
+            MainPage = new NavigationPage(new ToggledButtonDemoPage());
         }
 
         protected override void OnStart()
