@@ -8,37 +8,44 @@
                               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                               xmlns:viewModels="clr-namespace:RakhraWeatherApp.ViewModels;assembly=RakhraWeatherApp"
                               xmlns:views="clr-namespace:RakhraWeatherApp.Views;assembly=RakhraWeatherApp"
+                              xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+                              xmlns:xForms1="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
                               mc:Ignorable="d" x:Class="RakhraWeatherApp.Views.MainPage">
     <views:ContentPageBase.ToolbarItems>
         <ToolbarItem x:Name="Clear" Text="Clear"/>
         <ToolbarItem x:Name="Refresh" Text="Refresh"/>
     </views:ContentPageBase.ToolbarItems>
-    <StackLayout>
-        <ListView x:Name="listView" ios:ListView.RowAnimationsEnabled="False" HasUnevenRows="True" SeparatorVisibility="None" IsPullToRefreshEnabled="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Margin="5,5,5,5" BackgroundColor="DarkBlue">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="2*"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+    <xForms1:SfPullToRefresh x:Name="pullToRefresh" TransitionMode="Push">
+        <xForms1:SfPullToRefresh.PullableContent>
+    <xForms:SfListView x:Name="listView"  AutoFitMode="DynamicHeight" DragStartMode="OnHold, OnDragIndicator">
+        <xForms:SfListView.LayoutManager>
+            <xForms:GridLayout SpanCount="2"/>
+        </xForms:SfListView.LayoutManager>
+        <xForms:SfListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Margin="5,5,5,5" BackgroundColor="DarkBlue">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
                             
-                            <Label Grid.ColumnSpan="2" VerticalTextAlignment="Center" Text="{Binding City}" TextColor="WhiteSmoke" />
-                            <Label Grid.Row="1" Grid.Column="0" Text="Temperature" TextColor="WhiteSmoke"/>
-                            <Label Grid.Row="2" Grid.Column="0"  Text="{Binding TemperatureC}" TextColor="WhiteSmoke"/>
-                            <Label Grid.Row="1" Grid.Column="1" Text="Feels Like" TextColor="WhiteSmoke"/>
-                            <Label Grid.Row="2" Grid.Column="1"  Text="{Binding FeelsLikeC}" TextColor="WhiteSmoke"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                        <Label FontSize="Large" VerticalTextAlignment="Center" Text="{Binding City}" TextColor="WhiteSmoke" />
+                        <Label Grid.Row="1" Text="Temperature" TextColor="WhiteSmoke"/>
+                        <Label Grid.Row="2" Text="{Binding TemperatureC}" TextColor="WhiteSmoke"/>
+                        <Label Grid.Row="3" Text="Feels Like" TextColor="WhiteSmoke"/>
+                        <Label Grid.Row="4" Text="{Binding FeelsLikeC}" TextColor="WhiteSmoke" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </xForms:SfListView.ItemTemplate>
+    </xForms:SfListView>
+        </xForms1:SfPullToRefresh.PullableContent>
+    </xForms1:SfPullToRefresh>
 </views:ContentPageBase>

@@ -9,6 +9,7 @@ using RakhraWeatherApp.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
 using Splat;
+using Syncfusion.SfPullToRefresh.XForms;
 using Xamarin.Forms;
 
 namespace RakhraWeatherApp.Views
@@ -26,15 +27,18 @@ namespace RakhraWeatherApp.Views
             {
                 this.OneWayBind(ViewModel, model => model.Items, page => page.listView.ItemsSource)
                     .DisposeWith(disposable);
-                this.Bind(ViewModel, model => model.IsRefreshing, page => page.listView.IsRefreshing)
+                this.Bind(ViewModel, model => model.IsRefreshing, page => page.pullToRefresh.IsRefreshing)
                     .DisposeWith(disposable);
 
                 this.Refresh.Events().Clicked.Select(args => Unit.Default).InvokeCommand(ViewModel.PopulateDataCommand)
                     .DisposeWith(disposable);
                 this.Clear.Events().Clicked.Select(args => Unit.Default).InvokeCommand(ViewModel.ClearDataCommand)
                     .DisposeWith(disposable);
-                this.listView.Events().Refreshing.Select(args => Unit.Default)
-                    .InvokeCommand(ViewModel.PopulateDataCommand).DisposeWith(disposable);
+
+                   Observable.FromEventPattern(pullToRefresh, nameof(SfPullToRefresh.Refreshing)).Subscribe(async _ =>
+                       {
+                           await ViewModel.PopulateDataCommand.Execute();
+                       });
             });
         }
 

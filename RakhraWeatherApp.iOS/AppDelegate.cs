@@ -4,6 +4,9 @@ using System.Linq;
 
 using Foundation;
 using ReactiveUI;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.SfPullToRefresh.XForms;
+using Syncfusion.SfPullToRefresh.XForms.iOS;
 using UIKit;
 
 namespace RakhraWeatherApp.iOS
@@ -27,12 +30,16 @@ namespace RakhraWeatherApp.iOS
 
         public AppDelegate()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjE1MTg1QDMxMzcyZTM0MmUzMGdBSTNKcGNGWDZhbFh6bllQOGtIVWdzZ2dWQU5NaVZEb0hRbkxRbkFqSkE9");
             RxApp.SuspensionHost.CreateNewAppState = () => new AppBootstrapper();
         }
         
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            SfListViewRenderer.Init();
+            SfPullToRefreshRenderer.Init();
+            
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -1,6 +1,8 @@
 using System;
 using RakhraWeatherApp.Domain.UseCases;
 using RakhraWeatherApp.Domain.UseCases.Interfaces;
+using RakhraWeatherApp.Repository;
+using RakhraWeatherApp.Repository.Interfaces;
 using RakhraWeatherApp.Services;
 using RakhraWeatherApp.Services.Interfaces;
 using RakhraWeatherApp.ViewModels;
@@ -36,6 +38,10 @@ namespace RakhraWeatherApp
         private void RegisterDependencies()
         {
             Locator.CurrentMutable.RegisterConstant(this, typeof(IScreen));
+            Locator.CurrentMutable.RegisterLazySingleton(()=> new DbContext(), typeof(IDbContext));
+            Locator.CurrentMutable.RegisterLazySingleton(
+                () => new FavouriteWeatherInfo(Locator.Current.GetService<IDbContext>()),
+                typeof(IFavouriteWeatherInfo));
             Locator.CurrentMutable.RegisterLazySingleton(() => new AppRestService(), typeof(IAppRestService));
             Locator.CurrentMutable.RegisterLazySingleton(() => new FavouriteWeatherInfoUseCase(),
                 typeof(IFavouriteWeatherInfoUseCase));

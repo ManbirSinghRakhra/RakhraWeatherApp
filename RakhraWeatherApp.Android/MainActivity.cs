@@ -16,6 +16,8 @@ namespace RakhraWeatherApp.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjE1MTg1QDMxMzcyZTM0MmUzMGdBSTNKcGNGWDZhbFh6bllQOGtIVWdzZ2dWQU5NaVZEb0hRbkxRbkFqSkE9");
 
             base.OnCreate(savedInstanceState);
 

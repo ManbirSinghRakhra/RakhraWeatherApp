@@ -1,4 +1,5 @@
 ﻿using System;
+using RakhraWeatherApp.Services;
 using RakhraWeatherApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,9 +11,10 @@ namespace RakhraWeatherApp
         public App()
         {
             InitializeComponent();
-            //var bootstrapper = new AppBootstrapper();
-            //MainPage = bootstrapper.CreateMainPage();
-            MainPage = new NavigationPage(new ToggledButtonDemoPage());
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjE1MTg1QDMxMzcyZTM0MmUzMGdBSTNKcGNGWDZhbFh6bllQOGtIVWdzZ2dWQU5NaVZEb0hRbkxRbkFqSkE9");
+            var bootstrapper = new AppBootstrapper();
+            MainPage = bootstrapper.CreateMainPage();
+            //MainPage = new NavigationPage(new ToggledButtonDemoPage());
         }
 
         protected override void OnStart()

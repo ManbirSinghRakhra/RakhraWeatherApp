@@ -10,8 +10,10 @@ using DynamicData.Binding;
 using RakhraWeatherApp.Domain.Models;
 using RakhraWeatherApp.Domain.UseCases;
 using RakhraWeatherApp.Domain.UseCases.Interfaces;
+using RakhraWeatherApp.Services;
 using ReactiveUI;
 using Splat;
+using Xamarin.Forms;
 
 namespace RakhraWeatherApp.ViewModels
 {
