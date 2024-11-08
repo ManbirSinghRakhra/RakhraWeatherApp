@@ -9,7 +9,7 @@
     <PackageReference Include="ReactiveUI" Version="11.1.23" />
     <PackageReference Include="ReactiveUI.Events.XamForms" Version="11.1.23" />
     <PackageReference Include="ReactiveUI.XamForms" Version="11.1.23" />
-    <PackageReference Include="Refit" Version="5.0.23" />
+    <PackageReference Include="Refit" Version="7.2.22" />
     <PackageReference Include="Splat" Version="9.3.11" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.46" />
